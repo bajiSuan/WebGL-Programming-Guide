@@ -1,7 +1,7 @@
 // RotatedTriangle_Matrix4.js
 
-const VERTEX_SHADER = 
-`
+const VERTEX_SHADER =
+    `
 attribute vec4 a_Position;
 uniform mat4 u_xformMatrix;
 
@@ -12,13 +12,12 @@ void main()
 `
 
 const FRAGMENT_SHADER =
-`
+    `
 void main()
 {
     gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
 }
 `
-
 
 
 function main()
@@ -59,7 +58,7 @@ function main()
         console.log('Failed to get the storage location of u_xformMatrix.')
         return
     }
-    
+
     gl.uniformMatrix4fv(u_xformMatrix, false, xformMatrix.elements)
 
     // Set the color for clearning <canvas>
@@ -79,11 +78,11 @@ function initVertexBuffers(gl)
         [
             0.0, 0.5,
             -0.5, -0.5,
-            0.5, -0.5 
+            0.5, -0.5
         ]
     )
     let n = 3
-    
+
     // Create a buffer object
     let vertexBuffer = gl.createBuffer()
     if (!vertexBuffer)

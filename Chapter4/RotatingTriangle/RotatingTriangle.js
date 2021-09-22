@@ -1,7 +1,7 @@
 // RotatingTriangle.js
 
-const VERTEX_SHADER = 
-`
+const VERTEX_SHADER =
+    `
 attribute vec4 a_Position;
 uniform mat4 u_ModelMatrix;
 void main()
@@ -12,7 +12,7 @@ void main()
 `
 
 const FRAGMENT_SHADER =
-`
+    `
 void main()
 {
     gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
@@ -87,7 +87,7 @@ function initVertexBuffers(gl)
         ]
     )
     let n = 3
-    
+
     // Create a buffer object
     let vertexBuffer = gl.createBuffer()
     if (!vertexBuffer)
@@ -108,7 +108,6 @@ function initVertexBuffers(gl)
         console.log('Failed to get the storage location of a_Position.')
         return -1
     }
-
 
 
     // Assign the buffer object to a_Position variable
@@ -137,6 +136,7 @@ function draw(gl, n, currentAngle, modelMatrix, u_ModelMatrix)
 
 // Last time when this function was called
 let g_last = Date.now()
+
 function animate(angle)
 {
     // Calculate the elapsed time

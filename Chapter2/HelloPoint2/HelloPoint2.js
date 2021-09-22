@@ -1,7 +1,7 @@
 // HelloPoint2.js
 
 const VERTEX_SHADER =
-`
+    `
 attribute vec4 a_Position;
 
 void main()
@@ -11,8 +11,8 @@ void main()
 }
 `
 
-const FRAGMENT_SHADER = 
-`
+const FRAGMENT_SHADER =
+    `
 void main()
 {
     gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);
@@ -46,7 +46,7 @@ function main()
 
     // Pass vertex position to attribute variable
     gl.vertexAttrib3f(a_Position, 0.0, 0.0, 0.0)
-    
+
     gl.clearColor(0.0, 0.0, 0.0, 1.0)
     gl.clear(gl.COLOR_BUFFER_BIT)
 

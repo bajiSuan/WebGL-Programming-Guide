@@ -1,8 +1,8 @@
 // HelloPoint1.js 
 
 
-const VERTEX_SHADER = 
-`
+const VERTEX_SHADER =
+    `
 void main()
 {
     // Coordinates
@@ -13,8 +13,8 @@ void main()
 }
 `
 
-const FRAGMENT_SHADER = 
-`
+const FRAGMENT_SHADER =
+    `
 void main()
 {
     gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);

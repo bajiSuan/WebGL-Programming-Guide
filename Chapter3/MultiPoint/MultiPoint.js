@@ -1,7 +1,7 @@
 // MultiPoint.js
 
-const VERTEX_SHADER = 
-`
+const VERTEX_SHADER =
+    `
 attribute vec4 a_Position;
 void main()
 {
@@ -11,7 +11,7 @@ void main()
 `
 
 const FRAGMENT_SHADER =
-`
+    `
 void main()
 {
     gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
@@ -51,7 +51,7 @@ function main()
 
     // Draw the first point
     // gl.drawArrays(gl.POINTS, 0, 1)
-    
+
     // Draw from the second vertex
     // gl.drawArrays(gl.POINTS, 1, 1)
 
@@ -64,11 +64,11 @@ function initVertexBuffers(gl)
         [
             0.0, 0.5,
             -0.5, -0.5,
-            0.5, -0.5 
+            0.5, -0.5
         ]
     )
     let n = 3
-    
+
     // Create a buffer object
     let vertexBuffer = gl.createBuffer()
     if (!vertexBuffer)

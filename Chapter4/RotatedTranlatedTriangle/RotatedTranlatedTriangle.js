@@ -1,7 +1,7 @@
 // RotatedTranlatedTriangle.js
 
-const VERTEX_SHADER = 
-`
+const VERTEX_SHADER =
+    `
 attribute vec4 a_Position;
 uniform mat4 u_ModelMatrix;
 void main()
@@ -12,7 +12,7 @@ void main()
 `
 
 const FRAGMENT_SHADER =
-`
+    `
 void main()
 {
     gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
@@ -65,7 +65,7 @@ function main()
         console.log('Failed to get the storage location of u_ModelMatrix.')
         return
     }
-    
+
     gl.uniformMatrix4fv(u_ModelMatrix, false, modelMatrix.elements)
 
     // Set the color for clearning <canvas>
@@ -89,7 +89,7 @@ function initVertexBuffers(gl)
         ]
     )
     let n = 3
-    
+
     // Create a buffer object
     let vertexBuffer = gl.createBuffer()
     if (!vertexBuffer)

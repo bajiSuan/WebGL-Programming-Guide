@@ -1,7 +1,7 @@
 // MultiAttributeSize_Interleaved.js
 
 const VERTEX_SHADER =
-`
+    `
 attribute vec4 a_Position;
 attribute float a_PointSize;
 void main()
@@ -12,7 +12,7 @@ void main()
 `
 
 const FRAGMENT_SHADER =
-`
+    `
 void main()
 {
     gl_FragColor = vec4(1.0, 0.0, 0.0, 1.0);
@@ -65,8 +65,6 @@ function initVertexBuffers(gl)
         console.log('Failed to create the buffer object')
         return -1
     }
-
-
 
     // Write vertex coordinates and point sizes to the buffer object and enable it
     gl.bindBuffer(gl.ARRAY_BUFFER, vertexSizeBuffer)

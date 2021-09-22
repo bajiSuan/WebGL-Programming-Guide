@@ -1,9 +1,9 @@
 // HelloCanvas.js 
-function main() 
+function main()
 {
     // Retrieve <canvas> element
     let canvas = document.getElementById('webgl')
-    
+
     // Get the rendering context for WebGL
     let gl = getWebGLContext(canvas)
 
