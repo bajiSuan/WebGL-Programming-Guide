@@ -1,4 +1,4 @@
-// TextureQuad.js
+// MultiTexture.js
 
 async function main()
 {
@@ -42,61 +42,98 @@ async function main()
 
 function initTextures(gl, n)
 {
-    let texture = gl.createTexture()        // Create a texture object
-    if (!texture)
+    let texture0 = gl.createTexture()        // Create a texture object
+    if (!texture0)
     {
-        console.log('Failed to create the texture object');
+        console.log('Failed to create the texture0 object');
+        return false;
+    }
+    let texture1 = gl.createTexture()
+    if (!texture1)
+    {
+        console.log('Failed to create the texture1 object');
         return false;
     }
 
     // Get the storage location of u_Sampler
-    let u_Sampler = gl.getUniformLocation(gl.program, 'u_Sampler');
-    if (!u_Sampler)
+    let u_Sampler0 = gl.getUniformLocation(gl.program, 'u_Sampler0');
+    if (!u_Sampler0)
     {
-        console.log('Failed to get the storage location of u_Sampler');
+        console.log('Failed to get the storage location of u_Sampler0');
+        return false;
+    }
+    let u_Sampler1 = gl.getUniformLocation(gl.program, 'u_Sampler1');
+    if (!u_Sampler1)
+    {
+        console.log('Failed to get the storage location of u_Sampler1');
         return false;
     }
 
-    let image = new Image()                 // Create an image object
-    if (!image)
+    let image0 = new Image()                 // Create an image object
+    if (!image0)
     {
-        console.log('Failed to create the image object');
+        console.log('Failed to create the image0 object');
+        return false;
+    }
+    let image1 = new Image()
+    if (!image1)
+    {
+        console.log('Failed to create the image1 object');
         return false;
     }
 
     // Register the event handler to be called on loading an image
-    image.onload = function ()
+    image0.onload = function ()
     {
-        loadTexture(gl, n, texture, u_Sampler, image)
+        loadTexture(gl, n, texture0, u_Sampler0, image0, 0)
+    }
+    image1.onload = function ()
+    {
+        loadTexture(gl, n, texture1, u_Sampler1, image1, 1)
     }
 
     // Tell the browser to load an image
-    image.src = '../../resources/sky.jpg'
+    image0.src = '../../resources/redflower.jpg'
+    image1.src = '../../resources/circle.gif'
 
     return true
 }
 
-function loadTexture(gl, n, texture, u_Sampler, image)
+let g_texUnit0 = false
+let g_texUnit1 = false
+function loadTexture(gl, n, texture, u_Sampler, image, texUnit)
 {
     gl.pixelStorei(gl.UNPACK_FLIP_Y_WEBGL, 1)       // Flip the image's y axis
 
-    // Enable the texture unit 0
-    gl.activeTexture(gl.TEXTURE0)
+    // Enable the texture unit
+    switch (texUnit)
+    {
+        case 0:
+            gl.activeTexture(gl.TEXTURE0)
+            g_texUnit0 = true
+            break
+        case 1:
+            gl.activeTexture(gl.TEXTURE1)
+            g_texUnit1 = true
+            break
+    }
+
     // Bind the texture object to the target
     gl.bindTexture(gl.TEXTURE_2D, texture);
 
     // Set the texture parameters
-    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR)
-
-
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR);
     // Set the texture image
     gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGB, gl.RGB, gl.UNSIGNED_BYTE, image)
 
     // Set the texture unit 0 to the sampler
-    gl.uniform1i(u_Sampler, 0);
+    gl.uniform1i(u_Sampler, texUnit);
 
-    gl.clear(gl.COLOR_BUFFER_BIT);   // Clear <canvas>
-    gl.drawArrays(gl.TRIANGLE_STRIP, 0, n)
+    if (g_texUnit0 && g_texUnit1)
+    {
+        gl.clear(gl.COLOR_BUFFER_BIT);   // Clear <canvas>
+        gl.drawArrays(gl.TRIANGLE_STRIP, 0, n)
+    }
 }
 
 function initVertexBuffers(gl)

@@ -1,4 +1,4 @@
-// TextureQuad.js
+// TexturedQuad_Clamp_Mirror.js
 
 async function main()
 {
@@ -87,7 +87,8 @@ function loadTexture(gl, n, texture, u_Sampler, image)
 
     // Set the texture parameters
     gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_MIN_FILTER, gl.LINEAR)
-
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_S, gl.CLAMP_TO_EDGE)
+    gl.texParameteri(gl.TEXTURE_2D, gl.TEXTURE_WRAP_T, gl.MIRRORED_REPEAT)
 
     // Set the texture image
     gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGB, gl.RGB, gl.UNSIGNED_BYTE, image)
@@ -103,10 +104,10 @@ function initVertexBuffers(gl)
 {
     let verticesTexCoords = new Float32Array(
         [
-            -0.5, 0.5, 0.0, 1.0,
-            -0.5, -0.5, 0.0, 0.0,
-            0.5, 0.5, 1.0, 1.0,
-            0.5, -0.5, 1.0, 0.0
+            -0.5, 0.5, -0.3, 1.7,
+            -0.5, -0.5, -0.3, -0.2,
+            0.5, 0.5, 1.7, 1.7,
+            0.5, -0.5, 1.7, -0.2
         ]
     )
     let n = 4       // The number of vertices
